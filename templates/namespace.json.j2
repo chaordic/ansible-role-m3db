@@ -1,0 +1,23 @@
+{
+  "name": "{{ m3db_namespace }}",
+  "options": {
+    "bootstrapEnabled": {{ m3db_bootstrap }},
+    "flushEnabled": {{ m3db_flush }},
+    "writesToCommitLog": {{ m3db_writes_to_commit_log }},
+    "cleanupEnabled": {{ m3db_cleanup }},
+    "snapshotEnabled": {{ m3db_snapshot }},
+    "repairEnabled": {{ m3db_repair }},
+    "retentionOptions": {
+      "retentionPeriodDuration": "{{ m3db_retention }}",
+      "blockSizeDuration": "{{ m3db_blocksize_duration }}",
+      "bufferFutureDuration": "{{ m3db_buffer_future_duration }}",
+      "bufferPastDuration": "{{ m3db_buffer_past_duration }}",
+      "blockDataExpiry": {{ m3db_block_data_expiry }},
+      "blockDataExpiryAfterNotAccessPeriodDuration": "{{ m3db_block_data_expiry_after_not_access_period }}"
+    },
+    "indexOptions": {
+      "enabled": {{ m3db_index }},
+      "blockSizeDuration": "{{ m3db_index_blocksize }}"
+    }
+  }
+}

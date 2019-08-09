@@ -1,0 +1,12 @@
+---
+- name: "{{ m3db_role }} | create directories"
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ m3db_user }}"
+    group: "{{ m3db_group }}"
+  with_items:
+    - "{{ m3db_dir_bin }}"
+    - "{{ m3db_dir_config }}"
+    - "{{ m3db_dir_data }}"
+    - "{{ m3db_dir_cache }}"

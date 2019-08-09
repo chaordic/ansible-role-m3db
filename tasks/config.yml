@@ -1,0 +1,8 @@
+---
+- name: "{{ m3db_role }} | parse template to m3db config file"
+  copy:
+    dest: "{{ m3db_dir_config }}/config-{{ m3db_role }}.yml"
+    owner: "{{ m3db_user }}"
+    group: "{{ m3db_group }}"
+    mode: 0600
+    content: "{{ lookup('template', 'templates/config-{{ m3db_role }}.yml.j2') }}"

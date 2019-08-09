@@ -1,0 +1,12 @@
+---
+- name: "{{ m3db_role }} | create group"
+  group:
+    name: "{{ m3db_group }}"
+    state: present
+
+- name: "{{ m3db_role }} | create user"
+  user:
+    name: "{{ m3db_user }}"
+    group: "{{ m3db_group }}"
+    system: true
+    state: present

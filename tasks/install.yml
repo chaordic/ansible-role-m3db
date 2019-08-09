@@ -1,0 +1,14 @@
+---
+- name: "{{ m3db_role }} | check if m3db is installed"
+  stat:
+    path: "{{ m3db_dir_bin }}/{{ m3db_role }}"
+  register: install_result
+
+- name: "{{ m3db_role }} | download m3db binary"
+  unarchive:
+    src: "{{ m3db_bin_url }}"
+    dest: "{{ m3db_dir_bin }}"
+    remote_src: true
+    mode: 0755
+  when: install_result.stat.exists == False
+

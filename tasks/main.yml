@@ -1,0 +1,18 @@
+---
+- include: limits.yml
+  tags: m3db-limits
+
+- include: users.yml
+  tags: m3db-users
+
+- include: dirs.yml
+  tags: m3db-dirs
+
+- include: config.yml
+  tags: m3db-config
+
+- include: install.yml
+  tags: m3db-install
+
+- include: init.yml
+  tags: m3db-init

@@ -1,0 +1,17 @@
+{
+    "num_shards": {{ m3db_shards }},
+    "replication_factor": {{ m3db_replication }},
+    "instances": [
+{% for host in m3db_nodes %}
+        {
+            "id": "{{ host['hostname'] }}",
+            "isolation_group": "{{ host['group'] }}",
+            "zone": "embedded",
+            "weight": 100,
+            "endpoint": "{{ host['hostname'] }}:9000",
+            "hostname": "{{ host['Name'] }}",
+            "port": 9000
+        },
+{% endfor %}
+    ]
+}

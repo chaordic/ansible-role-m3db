@@ -1,0 +1,45 @@
+---
+- name: "{{ m3db_role }} | copy m3db systemd file"
+  template:
+    src: "role.service.j2"
+    dest: "/etc/systemd/system/{{ m3db_role }}.service"
+    owner: root
+    group: root
+    mode: 0644
+  register: systemd_unit
+  when: ansible_service_mgr == "systemd"
+
+- name: "{{ m3db_role }} | reload m3db systemd unit"
+  systemd:
+    daemon_reload: true
+  when:
+    - ansible_service_mgr == "systemd"
+    - systemd_unit.changed
+
+- name: "{{ m3db_role }} | enable m3db service"
+  service:
+    name: "{{ m3db_role }}"
+    enabled: true
+  when: m3db_init_enable
+
+- name: "{{ m3db_role }} | start m3db service"
+  service:
+    name: "{{ m3db_role }}"
+    state: started
+  when: m3db_init_start
+
+- name: "{{ m3db_role }} | Initialize placement"
+  uri:
+    url: http://localhost:7201/api/v1/placement/init
+    method: POST
+    body_format: json
+    body: "{{ lookup('template','placement.json.j2') }}"
+  when: m3db_init_placement|bool == true
+
+- name: "{{ m3db_role }} | Create namespace"
+  uri:
+    url: http://localhost:7201/api/v1/namespace
+    method: POST
+    body_format: json
+    body: "{{ lookup('template','namespace.json.j2') }}"
+  when: m3db_init_namespace|bool == true

@@ -1,0 +1,48 @@
+---
+m3db_user: m3db
+m3db_group: m3db
+
+m3db_init_enable: true
+m3db_init_start: true
+
+m3db_version: 0.10.2
+m3db_bin_url: "https://github.com/m3db/m3/releases/download/v{{ m3db_version }}/m3_{{ m3db_version }}_linux_amd64.tar.gz"
+
+m3db_dir_bin: /m3db/bin
+m3db_dir_config: /m3db/config
+m3db_dir_data: /m3db/data
+m3db_dir_cache: /m3db/cache
+
+m3db_init_placement: false
+m3db_init_namespace: false
+
+m3db_shards: 1024
+m3db_replication: 3
+
+m3db_retention: 17529h # 2 years
+m3db_namespace: metrics
+
+m3db_bootstrap: true
+m3db_flush: true
+m3db_writes_to_commit_log: true
+m3db_cleanup: true
+m3db_snapshot: true
+m3db_repair: false # should always be set to false: https://m3db.github.io/m3/operational_guide/namespace_configuration/#repairenabled
+m3db_blocksize_duration: 12h
+m3db_buffer_future_duration: 1h
+m3db_buffer_past_duration: 1h
+m3db_block_data_expiry: true
+m3db_block_data_expiry_after_not_access_period: 5m
+m3db_index: true
+m3db_index_blocksize: 12h
+
+# m3db_nodes:
+#   - hostname: FQDN1
+#     name: hostname1
+#     group: us-east-1a
+#   - hostname: FQDN2
+#     name: hostname2
+#     group: us-east-1b
+#
+# etcd_nodes:
+#   - hostname: FQDN1

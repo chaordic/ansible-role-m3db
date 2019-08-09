@@ -1,0 +1,28 @@
+---
+- sysctl:
+    name: vm.max_map_count
+    value: 3000000
+    state: present
+    sysctl_set: yes
+    reload: yes
+  
+- sysctl:
+    name: vm.swappiness
+    value: 1
+    state: present
+    sysctl_set: yes
+    reload: yes
+  
+- sysctl:
+    name: fs.file-max
+    value: 3000000
+    state: present
+    sysctl_set: yes
+    reload: yes
+  
+- sysctl:
+    name: fs.nr_open
+    value: 3000000
+    state: present
+    sysctl_set: yes
+    reload: yes
